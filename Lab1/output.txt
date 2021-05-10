@@ -1,0 +1,2 @@
+Enter the Parameters(0 indexed): 
+Vertices: 
