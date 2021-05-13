@@ -1,4 +1,4 @@
-*exe
-*png
-*jpeg
-*jpg
+*.exe
+*.png
+*.jpeg
+*.jpg
