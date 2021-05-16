@@ -1,39 +1,54 @@
-#define MAX 100
-#include<iostream>
+#include<bits/stdc++.h>
+
 using namespace std;
-int main()
+
+string bitStuff(string frame)
 {
-    int a[MAX],b[MAX],i,n,j,c=0,p=0;
-    cout<<"Enter the limit::";
-    cin>>n;
-    cout<<"Enter the string of 0's and 1's"<<endl;
-    for(i=0;i<n;i++)
+    int one = 0;
+    string temp = "";
+    for(int i=0;i<frame.size();i++)
     {
-        cin>>a[i];
-        b[i]=a[i];
-    }
-    for(i=0;i<n;i++)
-    {
-        if(a[i]==0)
-            c++;
-        else
-            c=0;
-        if(c==5)
+        temp += frame[i];
+        //cout<<temp<<"\n";
+        if(frame[i]=='0')one=0;
+        
+        else if(frame[i]!='0')
         {
-            p++;
-            n=n+1;
-            for(j=n-1;j>i+1;j--)
-                a[j]=a[j-1];
-            a[i+1]=1;
+            one++;
+            if(one==5){
+                temp+="0";
+                one =0;
+            }
         }
     }
-    cout<<"After bit stuffing the string is"<<endl;
-    for(i=0;i<n;i++)
-        cout<<a[i]<<" ";
-    cout<<endl;
-    n=n-p;
-    cout<<"After bit unstuffing the string is"<<endl;
-    for(i=0;i<n;i++)
-        cout<<b[i]<<" ";
-    cout<<endl;
+    return temp;
+}
+
+string bitDeStuff(string frame)
+{
+    int one = 0;
+    string temp = "";
+    for(int i=0;i<frame.size();i++)
+    {
+        temp += frame[i];
+        if(frame[i]=='0')one=0;
+        else if (frame[i]!='0')
+        {
+            one++;
+            if(one==5){
+                i++;
+                one =0;
+            }
+        }
+    }
+    return temp;
+}
+
+
+int main(){
+    cout<<"Enter the DATAFRAME: "<<"\n";
+    string frame;
+    cin>>frame;
+    cout<<"BitStuffed: "<<bitStuff(frame)<<"\n";
+    cout<<"BitDeStuffed: "<<bitDeStuff(frame)<<"\n";
 }
